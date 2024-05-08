@@ -58,6 +58,9 @@ gem "rubocop-packaging"
 # Postgres
 gem "pg"
 
+# env
+gem "dotenv"
+
 # Auth
 gem "devise"
 
