@@ -17,8 +17,8 @@ Rails.application.routes.draw do
 		shared: "institutions/shared",
 		unlocks: "institutions/unlocks"
 	}
-  
-  
+	
+	
 	devise_for :admin_users, ActiveAdmin::Devise.config
 	ActiveAdmin.routes(self)
 	# Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
