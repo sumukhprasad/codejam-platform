@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Institutions::SessionsController < Devise::SessionsController
+class Institutions::RegistrationsController < Devise::RegistrationsController
 	include Accessible
 	skip_before_action :check_user, except: [:new, :create]
   # before_action :configure_sign_up_params, only: [:create]
