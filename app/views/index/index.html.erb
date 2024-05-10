@@ -1,0 +1,16 @@
+You are not logged in.
+<br>
+--- DEVELOPMENT ONLY ---
+<br>
+<% if Rails.env.development? %>
+	<div class="category-separator">Institutions</div>
+	
+	<%= link_to "Register for CodeJam", new_institution_session_path %>
+	<%= link_to "Log In", new_institution_registration_path %>
+	<br>
+	---
+	<br>
+	<div class="category-separator">Students</div>
+	<%= link_to "Register for CodeJam", new_student_registration_path %>
+	<%= link_to "Log In", new_student_session_path %>
+<% end %>
