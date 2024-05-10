@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap')
+@import 'globalvars'
 
 *
 	font-family: 'ibm plex mono'
@@ -20,3 +21,19 @@ h3
 	font-weight: bold
 	font-size: 36px
 	color: #000000
+	
+a
+	color: $code_green_light
+	text-decoration: underline
+	text-decoration-color: $code_green_light
+	-webkit-text-decoration-color: $code_green_light
+	text-decoration-thickness: 2px
+	transition: all 0.2s
+	&:hover
+		background-color: $code_green_light
+		text-decoration: none
+		color: white
+		
+::selection
+	background-color: $code_green_light
+	color: white !important
