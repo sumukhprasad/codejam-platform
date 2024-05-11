@@ -11,11 +11,10 @@ module Accessible
 			redirect_to(admin_root_path) and return
 		elsif current_student
 			flash.clear
-			redirect_to(root_path) and return
-	
-	elsif current_institution
-	flash.clear
-	redirect_to(root_path) and return
+			redirect_to(student_root_path) and return
+		elsif current_institution
+			flash.clear
+			redirect_to(institution_root_path) and return
 		end
 	end
 end

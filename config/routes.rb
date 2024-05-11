@@ -17,7 +17,14 @@ Rails.application.routes.draw do
 		shared: "institutions/shared",
 		unlocks: "institutions/unlocks"
 	}
-	
+
+	authenticated :student do
+		root 'students#index', as: :student_root
+	end
+
+	authenticated :institution do
+		root 'institutions#index', as: :institution_root
+	end
 	
 	devise_for :admin_users, ActiveAdmin::Devise.config
 	ActiveAdmin.routes(self)
