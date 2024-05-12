@@ -3,29 +3,88 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "institutions/shared/error_messages", resource: resource %>
+	<%= render "institutions/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+	<div class="field-category">
+		<h3>About the Institution</h3>
+	</div>
+	
+	<div class="field">
+		<%= f.label :name %><br />
+		<%= f.text_field :name, required: true %>
+	</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+	<div class="field">
+		<%= f.label "Address" %><br />
+		<%= f.text_field :address_line_one, placeholder: true, required: true %><br />
+		<%= f.text_field :address_line_two, placeholder: true %><br />
+		<%= f.text_field :address_line_three, placeholder: true %><br />
+		<%= f.text_field :city, placeholder: true, required: true, style: "width: 109px" %>
+		<%= f.text_field :state, placeholder: true, required: true, style: "width: 109px" %><br />
+		<%= f.text_field :country, placeholder: true, required: true, style: "width: 109px" %>
+		<%= f.number_field :zip_code, placeholder: true, required: true, style: "width: 109px" %>
+	</div>
+	
+	
+	
+	
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+	<div class="field-category">
+		<h3>Account</h3>
+	</div>
+
+	<div class="field">
+		<%= f.label :email %><br />
+		<%= f.email_field :email, required: true, autofocus: true, autocomplete: "email" %>
+	</div>
+
+	<div class="field">
+		<%= f.label :password %>
+		<% if @minimum_password_length %>
+		<em>(<%= @minimum_password_length %> characters minimum)</em>
+		<% end %><br />
+		<%= f.password_field :password, required: true, autocomplete: "new-password" %>
+	</div>
+
+	<div class="field">
+		<%= f.label :password_confirmation %><br />
+		<%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
+	</div>
+	
+	
+	
+	
+	
+	<div class="field-category">
+		<h3>Contact</h3>
+	</div>
+	
+	<div class="field">
+		<%= f.label :website %><br />
+		<%= f.text_field :website, required: true %>
+	</div>
+
+	<div class="field">
+		<%= f.label :phone_number %><br />
+		+
+		<%= f.number_field :phone_country_code, required: true, placeholder: "XX", style: "width: 32px;" %>
+		-
+		<%= f.number_field :phone_number, required: true, placeholder: "----------", style: "width: 200px;" %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :secondary_contact_email %><br />
+		<%= f.email_field :secondary_contact_email, required: true %>
+	</div>
+	
+	
+	
+	
+	
+	<div class="actions">
+		<%= f.submit "Sign up" %>
+	</div>
 <% end %>
 
 <%= render "institutions/shared/links" %>

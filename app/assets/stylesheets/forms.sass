@@ -1,7 +1,19 @@
 @import 'globalvars'
 
+
+.field-category
+	max-width: 600px
+	border-bottom: 1px solid $code_green_light
+	margin-top: 40px
+	h3
+		opacity: 0.8
+
 .field
 	margin: 25px 0px
+	
+	input
+		width: 250px
+		margin-bottom: 5px
 
 label, em
 	font-weight: bold
@@ -15,7 +27,22 @@ input
 		box-shadow: 0 0 10px 0 $code_green_light
 
 input[type="submit"]
+	width: auto
 	background: $code_green_light
 	border: 1px solid $code_green_light
 	font-weight: bold
 	color: #FFFFFF
+	
+button
+	width: auto
+	background: $code_green_light
+	border: 1px solid $code_green_light
+	font-weight: bold
+	color: #FFFFFF
+	padding: 5px 10px
+	border-radius: 4px
+	font-family: 'ibm plex mono'
+	margin-bottom: 5px
+	margin-top: 5px
+	&:active
+		box-shadow: 0 0 10px 0 $code_green_light

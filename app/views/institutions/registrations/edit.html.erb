@@ -3,43 +3,117 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "institutions/shared/error_messages", resource: resource %>
+	<%= render "institutions/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+	<div class="field-category">
+		<h3>About the Institution</h3>
+	</div>
+	
+	<div class="field">
+		<%= f.label :name %><br />
+		<%= f.text_field :name, required: true %>
+	</div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+	<div class="field">
+		<%= f.label "Address" %><br />
+		<%= f.text_field :address_line_one, placeholder: true, required: true %><br />
+		<%= f.text_field :address_line_two, placeholder: true %><br />
+		<%= f.text_field :address_line_three, placeholder: true %><br />
+		<%= f.text_field :city, placeholder: true, required: true, style: "width: 109px" %>
+		<%= f.text_field :state, placeholder: true, required: true, style: "width: 109px" %><br />
+		<%= f.text_field :country, placeholder: true, required: true, style: "width: 109px" %>
+		<%= f.number_field :zip_code, placeholder: true, required: true, style: "width: 109px" %>
+	</div>
+	
+	
+	
+	
+	
+	<div class="field-category">
+		<h3>Account</h3>
+	</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+	<div class="field">
+		<%= f.label :email %><br />
+		<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+	</div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+	<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+		<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+	<% end %>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+	<div class="field">
+		<%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+		<%= f.password_field :password, autocomplete: "new-password" %>
+		<% if @minimum_password_length %>
+			<br />
+			<em><%= @minimum_password_length %> characters minimum</em>
+		<% end %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :password_confirmation %><br />
+		<%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="field-category">
+		<h3>Contact</h3>
+	</div>
+	
+	<div class="field">
+		<%= f.label :website %><br />
+		<%= f.text_field :website, required: true %>
+	</div>
+
+	<div class="field">
+		<%= f.label :phone_number %><br />
+		+
+		<%= f.number_field :phone_country_code, required: true, placeholder: "XX", style: "width: 32px;" %>
+		-
+		<%= f.number_field :phone_number, required: true, placeholder: "----------", style: "width: 200px;" %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :secondary_contact_email %><br />
+		<%= f.email_field :secondary_contact_email, required: true %>
+	</div>
+	
+	
+	
+
+
+	<div class="field-category">
+		<h3>Current password</h3>
+	</div>
+	<div class="field">
+		<%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+		<%= f.password_field :current_password, autocomplete: "current-password" %>
+	</div>
+	
+	
+	
+
+	<div class="actions">
+		<%= f.submit "Update" %>
+	</div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div class="field-category">
+	<h3>Cancel your registration</h3>
+	<p>WARNING: ONLY CANCEL YOUR REGISTRATION IF YOU ARE SURE ABOUT YOUR DECISION!
+</div>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<p>Cancelling your registration will have the following consequences:</p>
+<ul>
+	<li>All data associated with the institution will be deleted from CodeJam's database and will not be recoverable</li>
+	<li>Registered students from your institution will not be able to participate unless they register with an another institution</li>
+</ul>
 
-<%= link_to "Back", :back %>
+<%= button_to "I understand the consequences, cancel my registration", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
