@@ -1,0 +1,16 @@
+<div class="page-header">
+	<h2>Information for Institutions</h2>
+</div>
+
+
+<section>
+	<h3>Institution Code</h3>
+
+	<p>Students can use this code to affiliate themselves with your institution while registering.<br>Do not provide this code to anybody outside your institution.</p>
+	
+	<div class="institution-code-wrapper">
+		<div class="institution-code">
+			<%= @institution.institution_code.scan(/.{1,4}/).join('-') %>
+		</div>
+	</div>
+</section>

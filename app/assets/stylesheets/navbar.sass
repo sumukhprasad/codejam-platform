@@ -1,3 +1,5 @@
+@import 'globalvars'
+
 body
 	margin: 0
 	padding: 50px
@@ -19,6 +21,14 @@ nav
 		display: flex
 		flex-direction: row
 		gap: 50px
+		
+		.active
+			background-color: $code_green_light
+			color: white
+			border-radius: 5px
+			padding: 2px 8px
+			margin-top: -2px
+			margin-left: -8px
 	
 nav a
 	display: inline

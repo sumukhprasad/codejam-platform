@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
 	authenticated :institution do
 		root 'institutions#index', as: :institution_root
+		get '/information', to: 'institutions#information', as: :institution_information
+		get '/registrants', to: 'institutions#registrants', as: :institution_registrants
 	end
 	
 	devise_for :admin_users, ActiveAdmin::Devise.config

@@ -7,13 +7,15 @@
 	
 	<div class="links">
 		<% if institution_signed_in? %>
-	     <%= link_to "Edit Institution", edit_institution_registration_path, class: "navbar-link" %> 
-	     <%= link_to "Log out", destroy_institution_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
+	     	<%= link_to "Information", institution_information_path, class: "navbar-link" %> 
+			<%= link_to "Registrants", institution_registrants_path, class: "navbar-link" %> 
+			<%= link_to "Edit Institution", edit_institution_registration_path, class: "navbar-link" %>
+	     	<%= link_to "Log out", destroy_institution_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
 		<% end %>
 		
 		<% if student_signed_in? %>
-	     <%= link_to "Edit profile", edit_student_registration_path, class: "navbar-link" %> 
-	     <%= link_to "Log out", destroy_student_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
+	     	<%= link_to "Edit profile", edit_student_registration_path, class: "navbar-link" %> 
+	     	<%= link_to "Log out", destroy_student_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
 		<% end %>
 	</div>
 </nav>
