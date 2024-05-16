@@ -24,6 +24,8 @@ class Institution < ApplicationRecord
 		self.email = email.downcase
 	end
 	
+	has_many :students
+	
 	private 
 	
 	def generate_institution_code

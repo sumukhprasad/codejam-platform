@@ -3,18 +3,25 @@
 class Students::RegistrationsController < Devise::RegistrationsController
 	include Accessible
 	skip_before_action :check_user, except: [:new, :create]
-	# before_action :configure_sign_up_params, only: [:create]
-	# before_action :configure_account_update_params, only: [:update]
+	before_action :configure_sign_up_params, only: [:create]
+	before_action :configure_account_update_params, only: [:update]
 
 	# GET /resource/sign_up
 	# def new
 	#   super
 	# end
 
-	# POST /resource
-	# def create
-	#   super
-	# end
+	#POST /resource
+	def create
+		begin
+			params[:student][:institution_id] = params[:student][:institution_id].gsub('-', '')
+			params[:student][:institution_id] = Institution.find_by(:institution_code => params[:student][:institution_id]).id
+		rescue
+			flash[:error] =  "Institution does not exist."
+		end
+		
+		super
+	end
 
 	# GET /resource/edit
 	# def edit
@@ -22,9 +29,16 @@ class Students::RegistrationsController < Devise::RegistrationsController
 	# end
 
 	# PUT /resource
-	# def update
-	#   super
-	# end
+	def update
+		begin
+			params[:student][:institution_id] = params[:student][:institution_id].gsub('-', '')
+			params[:student][:institution_id] = Institution.find_by(:institution_code => params[:student][:institution_id]).id
+		rescue
+			flash[:error] =  "Institution does not exist."
+		end
+		
+		super
+	end
 
 	# DELETE /resource
 	# def destroy
@@ -43,14 +57,14 @@ class Students::RegistrationsController < Devise::RegistrationsController
 	# protected
 
 	# If you have extra params to permit, append them to the sanitizer.
-	# def configure_sign_up_params
-	#   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-	# end
+	def configure_sign_up_params
+		devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :preferred_first_name, :middle_name, :last_name, :gender, :institution_id, :institution, :date_of_birth])
+	end
 
 	# If you have extra params to permit, append them to the sanitizer.
-	# def configure_account_update_params
-	#   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-	# end
+	def configure_account_update_params
+		devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :preferred_first_name, :middle_name, :last_name, :gender, :institution_id, :institution, :date_of_birth])
+	end
 
 	# The path used after sign up.
 	# def after_sign_up_path_for(resource)

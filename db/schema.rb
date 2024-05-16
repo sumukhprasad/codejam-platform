@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_12_140228) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_15_122724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,8 +74,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_140228) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "preferred_first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.string "gender"
+    t.date "date_of_birth"
+    t.bigint "institution_id", null: false
     t.index ["email"], name: "index_students_on_email", unique: true
+    t.index ["institution_id"], name: "index_students_on_institution_id"
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "students", "institutions"
 end

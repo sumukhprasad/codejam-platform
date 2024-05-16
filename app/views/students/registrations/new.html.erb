@@ -3,29 +3,89 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "students/shared/error_messages", resource: resource %>
+	<%= render "students/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+	<div class="field-category">
+		<h3>About you</h3>
+	</div>
+	
+	<div class="field">
+		<%= f.label :first_name %><br />
+		<%= f.text_field :first_name, required: true %><br />
+		<%= f.label :preferred_first_name %><br />
+		<%= f.text_field :preferred_first_name %><br />
+		<%= f.label :middle_name %><br />
+		<%= f.text_field :middle_name %><br />
+		<%= f.label :last_name %><br />
+		<%= f.text_field :last_name, required: true %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :date_of_birth %><br />
+		<%= f.date_field :date_of_birth %>
+	</div>
+
+	<div class="field">
+		<%= f.label :gender %><br />
+		<i>if the gender you identify with is not listed, please type it in</i><br>
+		<%= f.text_field :gender, list: 'gender-options' %> 
+		<datalist id="gender-options">
+			<option value="Female">
+			<option value="Male">
+			<option value="Rather not say">
+		</datalist>
+	</div>
+	
+	
+	
+	<div class="field-category">
+		<h3>Institution</h3>
+	</div>
+	
+	<div class="field">
+		<%= f.label :institution_code %><br />
+		<%= f.text_field :institution_id, required: true, id: "institution-code-input", maxlength: 14 %>
+		<script>
+			var input = document.getElementById("institution-code-input");
+			function hyphenate() {var str = input.value.replace(/-/g, '').match(/.{1,4}/g).join('-');input.value = str;}
+			input.oninput = function () {hyphenate();}
+			hyphenate();
+		</script>
+	</div>
+	
+	
+	
+
+	<div class="field-category">
+		<h3>Account</h3>
+	</div>
+
+	<div class="field">
+		<%= f.label :email %><br />
+		<%= f.email_field :email, required: true, autofocus: true, autocomplete: "email" %>
+	</div>
+
+	<div class="field">
+		<%= f.label :password %>
+		<% if @minimum_password_length %>
+		<em>(<%= @minimum_password_length %> characters minimum)</em>
+		<% end %><br />
+		<%= f.password_field :password, required: true, autocomplete: "new-password" %>
+	</div>
+
+	<div class="field">
+		<%= f.label :password_confirmation %><br />
+		<%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
+	</div>
+	
+	
+
+	<div class="actions">
+		<%= f.submit "Sign up" %>
+	</div>
 <% end %>
 
 <%= render "students/shared/links" %>
