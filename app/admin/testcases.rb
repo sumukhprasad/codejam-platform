@@ -1,5 +1,5 @@
 ActiveAdmin.register Testcase do
-	permit_params :title, :input, :output
+	permit_params :title, :input, :output, :question_id
 	remove_filter :input_attachment, :input_blob, :output_attachment, :output_blob
 	
 	form do |f|
@@ -7,6 +7,7 @@ ActiveAdmin.register Testcase do
 			f.input :title
 			f.input :input, as: :file
 			f.input :output, as: :file
+			f.input :question_id, :as => :select, :collection => Question.all.map { |u| ["#{u.title.to_s}", u.id] }
 		end
 		f.actions
 	end

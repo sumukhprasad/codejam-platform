@@ -21,6 +21,11 @@ ActiveAdmin.register Question do
 			row :banner_image do |f|
 				link_to f.banner_image.filename, rails_blob_path(f.banner_image, disposition: 'attachment') if f.banner_image.attached?
 			end
+			row :testcases do |f|
+				for testcase in f.testcases do
+					testcase.title
+				end
+			end
 		end
 	end
 end
