@@ -6,3 +6,8 @@
 </div>
 
 <%= render :partial => "questions/question_content", locals: {content: @question.content.download} %>
+
+<hr>
+
+To begin, <%= link_to "get your input", question_input_path(@question.slug) %>.<br>
+Answer: []

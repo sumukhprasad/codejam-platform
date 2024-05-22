@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
 	authenticated :student do
 		root 'students#index', as: :student_root
-		resources :questions, param: :slug
+		resources :questions, param: :slug do
+			get 'input', to: 'questions#input', as: :input
+		end
 	end
 
 	authenticated :institution do
