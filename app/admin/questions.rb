@@ -13,18 +13,26 @@ ActiveAdmin.register Question do
 	end
 	
 	show do
-		attributes_table do
-			row :title
-			row :content do |f|
-				link_to f.content.filename, rails_blob_path(f.content, disposition: 'attachment') if f.content.attached?
-			end
-			row :banner_image do |f|
-				link_to f.banner_image.filename, rails_blob_path(f.banner_image, disposition: 'attachment') if f.banner_image.attached?
-			end
-			row :testcases do |f|
-				for testcase in f.testcases do
-					testcase.title
+		tabs do
+			tab :about do
+				attributes_table do
+					row :title
+					row :content do |f|
+						link_to f.content.filename, rails_blob_path(f.content, disposition: 'attachment') if f.content.attached?
+					end
+					row :banner_image do |f|
+						link_to f.banner_image.filename, rails_blob_path(f.banner_image, disposition: 'attachment') if f.banner_image.attached?
+					end
+					row :testcases do |f|
+						for testcase in f.testcases do
+							testcase.title
+						end
+					end
 				end
+			end
+			
+			tab :preview do
+				render partial: 'question_content', locals: { title: question.title, content:  question.content.download }	
 			end
 		end
 	end
