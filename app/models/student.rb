@@ -10,9 +10,17 @@ class Student < ApplicationRecord
 	# validates :middle_name
 	validates :gender, presence: true
 	validates :date_of_birth, presence: true
+	validates :testcase_number, presence: true
 	validate :date_of_birth_minimum_age
-
-	private
+	before_validation(on: :create) do
+		generate_testcase_number
+	end
+	
+	private 
+	
+	def generate_testcase_number
+		self.testcase_number = rand(1..3)
+	end
 
 	def date_of_birth_minimum_age
 		if date_of_birth.present? && date_of_birth > 14.years.ago.to_date
