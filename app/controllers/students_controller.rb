@@ -3,5 +3,6 @@ class StudentsController < ApplicationController
 	
 	def index
 		@student = current_student
+		@questions = Question.all
 	end
 end

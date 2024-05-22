@@ -1,26 +1,44 @@
-table
+.standard-table
 	border-collapse: collapse
 	
 	th
-	     background-color: #ccc
-	     border-left: #aaa solid 1px
-	     border-right: #aaa solid 1px
-	     border-bottom: #111 solid 1px
-	     margin: 0
-	     padding: 5px
-	     border-collapse: collapse
-	     text-align: left
+		background-color: #ccc
+		border-left: #aaa solid 1px
+		border-right: #aaa solid 1px
+		border-bottom: #111 solid 1px
+		margin: 0
+		padding: 5px
+		border-collapse: collapse
+		text-align: left
 	
 	td
-	     border-left: #aaa solid 1px
-	     border-right: #aaa solid 1px
-	     border-bottom: #aaa solid 1px
-	     margin: 0
-	     padding: 5px
-	     border-collapse: collapse
+		border-left: #aaa solid 1px
+		border-right: #aaa solid 1px
+		border-bottom: #aaa solid 1px
+		margin: 0
+		padding: 5px
+		border-collapse: collapse
 	
 	tr
-	     &:nth-child(even)
-	          background: white
-	     &:nth-child(odd)
-	          background: #F7F7F7
+		&:nth-child(even)
+			background: white
+		&:nth-child(odd)
+			background: #F7F7F7
+			
+.open-table
+	border-collapse: collapse
+	th
+		border-bottom: #111 solid 1px
+		margin: 0
+		padding: 5px
+		border-collapse: collapse
+		text-align: left
+		background-color: transparent
+	tr:not(:last-child)
+		border-bottom: #000 dashed 1px
+	td 
+		margin: 0
+		padding: 5px
+		border-collapse: collapse
+	.question-title
+		font-weight: bold

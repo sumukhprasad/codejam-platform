@@ -1,2 +1,14 @@
-<h1>Students#index</h1>
-<p>Find me in app/views/students/index.html.erb</p>
+<% if !@questions.blank? %>
+		<table class="open-table">
+			<tbody>
+				<% @questions.each do |q| %>
+					<tr>
+						<td class="question-title"><%= q.title %></td>
+						<td><%= q.score %>pts</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+<% else %>
+	No questions.
+<% end %>

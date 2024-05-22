@@ -3,6 +3,8 @@ class Question < ApplicationRecord
 	
 	has_many :testcases
 	
+	validates :score, presence: true
+	
 	has_one_attached :content
 	has_one_attached :banner_image
 end
