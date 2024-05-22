@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
 	authenticated :student do
 		root 'students#index', as: :student_root
+		resources :questions, param: :slug
 	end
 
 	authenticated :institution do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
 		get '/information', to: 'institutions#information', as: :institution_information
 		get '/registrants', to: 'institutions#registrants', as: :institution_registrants
 	end
+	
 	
 	devise_for :admin_users, ActiveAdmin::Devise.config
 	ActiveAdmin.routes(self)

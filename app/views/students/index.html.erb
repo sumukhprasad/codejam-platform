@@ -3,7 +3,9 @@
 			<tbody>
 				<% @questions.each do |q| %>
 					<tr>
-						<td class="question-title"><%= q.title %></td>
+						<td class="question-title">
+							<%= link_to q.title, question_path(q.slug) %>
+						</td>
 						<td><%= q.score %>pts</td>
 					</tr>
 				<% end %>

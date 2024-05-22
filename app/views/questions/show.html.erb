@@ -1,0 +1,8 @@
+<div class="page-header">
+	<h2><%= @question.title %></h2>
+	<i>
+		<%= @question.score %>pts
+	</i>
+</div>
+
+<%= render :partial => "questions/question_content", locals: {content: @question.content.download} %>
