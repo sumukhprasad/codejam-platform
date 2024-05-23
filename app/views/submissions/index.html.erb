@@ -1,0 +1,47 @@
+<div class="page-header">
+	<h2><%= @question.title %> Submissions</h2>
+</div>
+
+<% if !@submissions.blank? %>
+		<table class="open-table">
+			<thead>
+				<tr>
+					<th scope="col">Submission</th>
+					<th scope="col">Result</th>
+					<th scope="col">Gold Star</th>
+					<th scope="col">Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @submissions.each do |s| %>
+					<tr>
+						<td>
+							<%= s.result %>
+						</td>
+						
+						<td>
+							<% if s.is_correct %>
+								<span class="correct-badge">CORRECT ANSWER</span>
+							<% else %>
+								<span class="wrong-badge">WRONG ANSWER</span>
+							<% end %>
+						</td>
+						
+						<td>
+							<% if s.gold_star %>
+								⭐️
+							<% else %>
+								-
+							<% end %>
+						</td>
+
+						<td>
+							<%= s.created_at %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+<% else %>
+	No submissions.
+<% end %>

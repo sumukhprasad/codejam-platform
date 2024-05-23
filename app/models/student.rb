@@ -4,6 +4,7 @@ class Student < ApplicationRecord
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 				
 	belongs_to :institution
+	has_many :submissions
 	
 	validates :first_name, :last_name, presence: true
 	# validates :preferred_first_name
@@ -16,7 +17,7 @@ class Student < ApplicationRecord
 		generate_testcase_number
 	end
 	
-	private 
+	private
 	
 	def generate_testcase_number
 		self.testcase_number = rand(1..3)

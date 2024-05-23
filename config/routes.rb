@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 		root 'students#index', as: :student_root
 		resources :questions, param: :slug do
 			get 'input', to: 'questions#input', as: :input
+			resources :submissions, only: [:index, :create]
 		end
 	end
 

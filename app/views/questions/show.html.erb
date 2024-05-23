@@ -9,5 +9,13 @@
 
 <hr>
 
-To begin, <%= link_to "get your input", question_input_path(@question.slug) %>.<br>
-Answer: []
+<% if @submissions_allowed %>
+	<p>To begin, <%= link_to "get your input", question_input_path(@question.slug), target: "_blank" %>.</p>
+	<%= form_with url: question_submissions_path(:question => @question, :question_slug => @question.slug), method: :post do |f| %>
+		<p>Answer: <%= f.text_field :result, placeholder: true, required: true %> <%= f.submit "Submit" %></p>
+	<% end %>
+<% else %>
+	You've already submitted a correct answer.
+<% end %>
+
+<%= link_to "See past submissions", question_submissions_path(@question.slug), target: "_blank" %>

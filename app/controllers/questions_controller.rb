@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 	
 	def show
 		@question = Question.find_by(:slug => params[:slug])
+		@submissions_allowed = @question.submissions.where(:student_id => current_student.id, :is_correct => true).empty?
 	end
 	
 	def input

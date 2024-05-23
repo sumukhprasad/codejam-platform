@@ -2,6 +2,7 @@ class Question < ApplicationRecord
 	include RansackSearchable
 	
 	has_many :testcases
+	has_many :submissions
 	
 	validates :score, presence: true
 	validates :number, presence: true
