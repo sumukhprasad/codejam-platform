@@ -1,4 +1,6 @@
 class Submission < ApplicationRecord
+	include RansackSearchable
+	
 	belongs_to :question
 	belongs_to :student
 	validates :result, presence: true

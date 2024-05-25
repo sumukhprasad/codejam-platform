@@ -38,7 +38,7 @@ ActiveAdmin.register Question do
 			end
 			
 			tab :preview do
-				render partial: 'question_content', locals: { title: question.title, content:  question.content.download }	
+				render partial: 'question_content', locals: { title: question.title, content:  question.content.download, image: question.banner_image }	
 			end
 		end
 	end
