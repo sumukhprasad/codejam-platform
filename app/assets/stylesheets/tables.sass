@@ -24,6 +24,23 @@
 			background: white
 		&:nth-child(odd)
 			background: #F7F7F7
+
+.borderless-table
+	border-collapse: collapse
+	
+	th
+		border: none
+		padding: 5px
+		border-collapse: collapse
+		text-align: left
+
+	td
+		border: none
+		padding: 5px
+		border-collapse: collapse
+	
+	tr:not(:last-child)
+		border-bottom: #000 dashed 1px
 			
 .open-table
 	border-collapse: collapse

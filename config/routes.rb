@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 		get '/registrants', to: 'institutions#registrants', as: :institution_registrants
 	end
 	
+	get '/leaderboard', to: 'leaderboard#index', as: :leaderboard
 	
 	devise_for :admin_users, ActiveAdmin::Devise.config
 	ActiveAdmin.routes(self)
