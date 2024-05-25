@@ -5,7 +5,7 @@
 					<th scope="col">Question</th>
 					<th scope="col">Max. Score</th>
 					<th scope="col">Your score</th>
-					<th scope="col">Gold Star</th>
+					<th scope="col">Stars</th>
 					<th scope="col">Submissions</th>
 				</tr>
 			</thead>
@@ -26,10 +26,14 @@
 							<% end %>
 						</td>
 						<td>
-							<% if q.submissions.where(:student_id => current_student.id, :gold_star => true).empty? %>
-								-
+							<% if !q.submissions.where(:student_id => current_student.id, :gold_star => true).empty? %>
+								gold_star
+							<% elsif !q.submissions.where(:student_id => current_student.id, :silver_star => true).empty? %>
+								silver_star
+							<% elsif !q.submissions.where(:student_id => current_student.id, :bronze_star => true).empty? %>
+								bronze_star
 							<% else %>
-								⭐️
+								-
 							<% end %>
 						</td>
 						<td><%= link_to "Your submissions", question_submissions_path(q.slug) %></td>

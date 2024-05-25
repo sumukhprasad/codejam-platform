@@ -8,7 +8,7 @@
 				<tr>
 					<th scope="col">Submission</th>
 					<th scope="col">Result</th>
-					<th scope="col">Gold Star</th>
+					<th scope="col">Stars</th>
 					<th scope="col">Time</th>
 				</tr>
 			</thead>
@@ -29,7 +29,11 @@
 						
 						<td>
 							<% if s.gold_star %>
-								⭐️
+								gold_star
+							<% elsif s.silver_star %>
+								silver_star
+							<% elsif s.bronze_star %>
+								bronze_star
 							<% else %>
 								-
 							<% end %>

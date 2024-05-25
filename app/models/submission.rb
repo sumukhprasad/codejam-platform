@@ -6,11 +6,12 @@ class Submission < ApplicationRecord
 	validates :result, presence: true
 	validates :is_correct, inclusion: { in: [ true, false ] }
 	validates :gold_star, inclusion: { in: [ true, false ] }
+	validates :silver_star, inclusion: { in: [ true, false ] }
+	validates :bronze_star, inclusion: { in: [ true, false ] }
 	
 	before_validation(on: :create) do
 		verify_if_correct
-		assign_gold_star
-		puts self
+		assign_stars
 	end
 	
 	private
@@ -25,11 +26,16 @@ class Submission < ApplicationRecord
 		end
 	end
 	
-	def assign_gold_star
-		if is_correct && question.submissions.where(is_correct: true).count == 0
-			self.gold_star = true
-		else
-			self.gold_star = false
+	def assign_stars
+		correct_submissions_count = question.submissions.where(is_correct: true).count
+		if is_correct
+			if correct_submissions_count == 0
+				self.gold_star = true
+			elsif correct_submissions_count.between?(1, 5)
+				self.silver_star = true
+			elsif correct_submissions_count.between?(6, 15)
+				self.bronze_star = true
+			end
 		end
 	end
 end
