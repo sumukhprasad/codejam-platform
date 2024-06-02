@@ -19,7 +19,7 @@
 
 <p><i>NOTE: This leaderboard might be inaccurate due to delays in processing scores. If your score is not immediately reflected, please allow a wait of at least 5 minutes before contacting your CodeJam liaison.</i></p>
 
-<table class="open-table">
+<table class="open-table highlight-on-hover">
 	<thead>
 		<tr>
 			<th scope="col">Rank</th>
@@ -44,7 +44,7 @@
 						
 						<%= s[:rank] %>
 					</td>
-					<td><%= s[:student].first_name %></td>
+					<td><strong><%= s[:student].first_name %></strong></td>
 					<td><%= s[:raw_score] %></td>
 					<td>
 						<% s[:gold_stars].times do %>
