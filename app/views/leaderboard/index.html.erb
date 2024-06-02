@@ -19,3 +19,55 @@
 
 <p><i>NOTE: This leaderboard might be inaccurate due to delays in processing scores. If your score is not immediately reflected, please allow a wait of at least 5 minutes before contacting your CodeJam liaison.</i></p>
 
+<table class="open-table">
+	<thead>
+		<tr>
+			<th scope="col">Rank</th>
+			<th scope="col">Name</th>
+			<th scope="col">Score</th>
+			<th scope="col">Stars</th>
+			<th scope="col">Total Score</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if !@scores.blank? %>
+			<% @scores.sort_by { |s| s[:rank] }.each do | s | %>
+				<tr>
+					<td>
+						<% if s[:rank] == 1 %>
+							gold_medal
+						<% elsif s[:rank] == 2 %>
+							silver_medal
+						<% elsif s[:rank] == 3 %>
+							bronze_medal
+						<% end %>
+						
+						<%= s[:rank] %>
+					</td>
+					<td><%= s[:student].first_name %></td>
+					<td><%= s[:raw_score] %></td>
+					<td>
+						<% s[:gold_stars].times do %>
+							gold_star
+						<% end %>	
+						
+
+						<% s[:silver_stars].times do %>
+							silver_star
+						<% end %>
+						
+
+						<% s[:bronze_stars].times do %>
+							bronze_star
+						<% end %>
+					</td>
+					<td><%= s[:total_score] %></td>
+				</tr>
+				
+			<% end %>
+		<% else %>
+			No scores.
+		<% end %>
+		
+	</tbody>
+</table>
