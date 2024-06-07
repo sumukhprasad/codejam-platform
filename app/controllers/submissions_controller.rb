@@ -7,12 +7,20 @@ class SubmissionsController < ApplicationController
 	end
 
 	def create
-		@submission = Submission.new()
-		@question = Question.find_by(:id => params[:question])
-		@submission.student = current_student
-		@submission.question = @question
-		@submission.result = params[:result]
-		@submission.save!
-		redirect_to question_submissions_path(@question.slug)
+		@config = ContestConfiguration.where(active: true).first
+		if @config != nil && @config.start_time < DateTime.now && @config.end_time > DateTime.now
+			@submission = Submission.new()
+			@question = Question.find_by(:id => params[:question])
+			@submission.student = current_student
+			@submission.question = @question
+			@submission.result = params[:result]
+			@submission.save!
+			redirect_to question_submissions_path(@question.slug)
+		else
+			flash[:error] = "You make any new submissions once CodeJam has ended."
+			redirect_to question_submissions_path(@question.slug)
+		end
+		
+		
 	end
 end

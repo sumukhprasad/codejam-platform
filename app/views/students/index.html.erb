@@ -1,5 +1,137 @@
-<% if !@questions.blank? %>
-		<table class="open-table">
+<% if @config != nil %>
+	
+	<% if @config.start_time < DateTime.now && @config.end_time > DateTime.now %>
+		<% if !@questions.blank? %>
+		
+			<div class="page-header">
+				<h2>CodeJam</h2>
+			</div>
+			
+			<div class="questions-body">
+				
+				<div class="main-panel">
+					<table class="open-table" id="questions-table">
+						<thead>
+							<tr>
+								<th scope="col">Question</th>
+								<th scope="col">Max. Score</th>
+								<th scope="col">Your score</th>
+								<th scope="col">Stars</th>
+								<th scope="col">Submissions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @questions.each do |q| %>
+								<tr>
+									<td class="question-title">
+										<%= link_to q.title, question_path(q.slug) %>
+									</td>
+									<td><%= q.score %>pts</td>
+									<td>
+										<% if q.submissions.where(:student_id => current_student.id).empty? %>
+											Not attempted.
+										<% elsif q.submissions.where(:student_id => current_student.id, :is_correct => true).empty? %>
+											0pts
+										<% else %>
+											<%= q.score %>pts
+										<% end %>
+									</td>
+									<td>
+										<% if !q.submissions.where(:student_id => current_student.id, :gold_star => true).empty? %>
+											gold_star
+										<% elsif !q.submissions.where(:student_id => current_student.id, :silver_star => true).empty? %>
+											silver_star
+										<% elsif !q.submissions.where(:student_id => current_student.id, :bronze_star => true).empty? %>
+											bronze_star
+										<% else %>
+											-
+										<% end %>
+									</td>
+									<td><%= link_to "Your submissions", question_submissions_path(q.slug) %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+				
+				
+				<div class="info-panel">
+					<div class="countdown-preceding-text">
+						CodeJam ends in
+					</div>
+					<div class="countdown" id="countdown">--:--:--</div>
+					<script>
+						var countDownDate = new Date("<%= @config.end_time.utc.iso8601 %>").getTime();
+						var countDownInterval = setInterval(function() {
+							var now = new Date().getTime();
+							var distance = countDownDate - now;
+							var hours = Math.floor(distance / (1000 * 60 * 60));
+							var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+							var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+							document.getElementById("countdown").innerHTML = String(hours).padStart(2, '0') + ":"
+							+ String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
+
+							if (distance <= 0) {
+								document.getElementById("questions-table").remove()
+								clearInterval(countDownInterval);
+								window.location.reload()
+							}
+						}, 1000);
+				
+						function padToTwo(number) {
+							if (number<=99) { number = ("0"+number).slice(-2); }
+							return number;
+						}
+					</script>
+				</div>
+				
+			</div>
+			
+		<% else %>
+			<div class="page-header">
+				<h2>CodeJam</h2>
+			</div>
+			
+			No questions.
+		<% end %>
+	<% elsif @config.start_time > DateTime.now %>
+		<div class="page-header">
+			<h2 id="countdown"></h2>
+			
+			<script>
+				var countDownDate = new Date("<%= @config.start_time.utc.iso8601 %>").getTime();
+				var countDownInterval = setInterval(function() {
+					var now = new Date().getTime();
+					var distance = countDownDate - now;
+					var hours = Math.floor(distance / (1000 * 60 * 60));
+					var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+					document.getElementById("countdown").innerHTML = String(hours).padStart(2, '0') + ":"
+					+ String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0') + " left.";
+
+					if (distance <= 0) {
+						clearInterval(countDownInterval);
+						window.location.reload()
+					}
+				}, 1000);
+				
+				function padToTwo(number) {
+					if (number<=99) { number = ("0"+number).slice(-2); }
+					return number;
+				}
+			</script>
+		</div>
+		<%= @config.before_start_notice %>
+	<% else %>
+		<div class="page-header">
+			<h2>CodeJam</h2>
+		</div>
+		
+		<%= @config.after_end_notice %>
+		
+		<table class="open-table" id="questions-table">
 			<thead>
 				<tr>
 					<th scope="col">Question</th>
@@ -41,6 +173,8 @@
 				<% end %>
 			</tbody>
 		</table>
+		
+	<% end %>
 <% else %>
-	No questions.
+	CodeJam's timings has not been configured yet. Please wait.
 <% end %>

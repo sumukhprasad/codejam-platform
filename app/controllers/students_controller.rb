@@ -4,5 +4,6 @@ class StudentsController < ApplicationController
 	def index
 		@student = current_student
 		@questions = Question.all
+		@config = ContestConfiguration.where(active: true).first
 	end
 end

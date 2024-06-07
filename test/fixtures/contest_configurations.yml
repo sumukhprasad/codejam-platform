@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2024-06-06 06:43:37
+  end_time: 2024-06-06 06:43:37
+  before_start_notice: MyText
+  after_end_notice: MyText
+
+two:
+  start_time: 2024-06-06 06:43:37
+  end_time: 2024-06-06 06:43:37
+  before_start_notice: MyText
+  after_end_notice: MyText
