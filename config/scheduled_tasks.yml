@@ -1,0 +1,6 @@
+leaderboard_generation:
+  every: 
+    - "5m"
+    - :first_in: '0s'
+  queue: leaderboard_generation_queue
+  class: LeaderboardGenerator

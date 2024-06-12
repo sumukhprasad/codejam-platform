@@ -1,3 +1,5 @@
+require 'resque/server'
+
 Rails.application.routes.draw do
 	devise_for :students, path: 'students', controllers: { 
 		confirmations: "students/confirmations",

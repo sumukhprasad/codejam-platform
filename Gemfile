@@ -67,6 +67,17 @@ gem "devise"
 # Admin
 gem "activeadmin"
 
+# resque
+gem "resque"
+gem 'resque-scheduler'
+gem 'resque-scheduler-web'
+
+# redis
+gem 'hiredis'
+
+# Procfile support
+gem "foreman"
+
 # ----
 
 group :development, :test do
