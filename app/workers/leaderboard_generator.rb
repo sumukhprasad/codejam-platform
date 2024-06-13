@@ -39,7 +39,7 @@ class LeaderboardGenerator
 			score[:rank] = score_values.index(score[:total_score]) + 1
 		}
 		
-    	 	puts "Done. Writing to cache..."
+				puts "Done. Writing to cache..."
 		Rails.cache.write('leaderboard', scores)
 		puts "Done."
 	end
