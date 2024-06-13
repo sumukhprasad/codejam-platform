@@ -29,11 +29,11 @@
 						
 						<td>
 							<% if s.gold_star %>
-								gold_star
+								<%= image_tag "scoring/stars/gold.png", height: 16, style: "margin-bottom: -4px;" %>
 							<% elsif s.silver_star %>
-								silver_star
+								<%= image_tag "scoring/stars/silver.png", height: 16, style: "margin-bottom: -4px;" %>
 							<% elsif s.bronze_star %>
-								bronze_star
+								<%= image_tag "scoring/stars/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
 							<% else %>
 								-
 							<% end %>

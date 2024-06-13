@@ -35,11 +35,11 @@
 				<tr>
 					<td>
 						<% if s[:rank] == 1 %>
-							gold_medal
+							<%= image_tag "scoring/medals/gold.png", height: 16, style: "margin-bottom: -4px;" %>
 						<% elsif s[:rank] == 2 %>
-							silver_medal
+							<%= image_tag "scoring/medals/silver.png", height: 16, style: "margin-bottom: -4px;" %>
 						<% elsif s[:rank] == 3 %>
-							bronze_medal
+							<%= image_tag "scoring/medals/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
 						<% end %>
 						
 						<%= s[:rank] %>
@@ -48,17 +48,17 @@
 					<td><%= s[:raw_score] %></td>
 					<td>
 						<% s[:gold_stars].times do %>
-							gold_star
+							<%= image_tag "scoring/stars/gold.png", height: 16, style: "margin-bottom: -4px;" %>
 						<% end %>	
 						
 
 						<% s[:silver_stars].times do %>
-							silver_star
+							<%= image_tag "scoring/stars/silver.png", height: 16, style: "margin-bottom: -4px;" %>
 						<% end %>
 						
 
 						<% s[:bronze_stars].times do %>
-							bronze_star
+							<%= image_tag "scoring/stars/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
 						<% end %>
 					</td>
 					<td><%= s[:total_score] %></td>

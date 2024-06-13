@@ -38,11 +38,11 @@
 									</td>
 									<td>
 										<% if !q.submissions.where(:student_id => current_student.id, :gold_star => true).empty? %>
-											gold_star
+											<%= image_tag "scoring/stars/gold.png", height: 16, style: "margin-bottom: -4px;" %>
 										<% elsif !q.submissions.where(:student_id => current_student.id, :silver_star => true).empty? %>
-											silver_star
+											<%= image_tag "scoring/stars/silver.png", height: 16, style: "margin-bottom: -4px;" %>
 										<% elsif !q.submissions.where(:student_id => current_student.id, :bronze_star => true).empty? %>
-											bronze_star
+											<%= image_tag "scoring/stars/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
 										<% else %>
 											-
 										<% end %>
@@ -159,11 +159,11 @@
 						</td>
 						<td>
 							<% if !q.submissions.where(:student_id => current_student.id, :gold_star => true).empty? %>
-								gold_star
+								<%= image_tag "scoring/stars/gold.png", height: 16, style: "margin-bottom: -4px;" %>
 							<% elsif !q.submissions.where(:student_id => current_student.id, :silver_star => true).empty? %>
-								silver_star
+								<%= image_tag "scoring/stars/silver.png", height: 16, style: "margin-bottom: -4px;" %>
 							<% elsif !q.submissions.where(:student_id => current_student.id, :bronze_star => true).empty? %>
-								bronze_star
+								<%= image_tag "scoring/stars/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
 							<% else %>
 								-
 							<% end %>
