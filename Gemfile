@@ -78,6 +78,10 @@ gem 'hiredis'
 # Procfile support
 gem "foreman"
 
+
+# Pagination
+gem "pagy"
+
 # ----
 
 group :development, :test do
