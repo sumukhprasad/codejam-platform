@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  web:
+    build: ./ 
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/docker/app # add our local code to dockerfile
+    depends_on:
+      - db  # add all dependant container
+      
+  redis:
+    image: "redis:7-alpine"
+    ports:
+      - 6379
+    volumes:
+      - ./tmp/redis_data:/var/lib/redis/data
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: codejam
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - ./tmp/postgres_data:/var/lib/postgresql/data
+    

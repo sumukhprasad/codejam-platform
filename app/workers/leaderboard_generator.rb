@@ -32,7 +32,7 @@ class LeaderboardGenerator
 			end
 		end
 		
-		score_values = score_values.sort
+		score_values = score_values.sort.reverse
 		scores = unranked_scores
 		
 		scores.each { |score|

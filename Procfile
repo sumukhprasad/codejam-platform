@@ -1,6 +1,6 @@
 # Procfile
 
 redis: redis-server
-web: rails s -p 3000
+web: rails s -p 3000 --binding=0.0.0.0
 resque: QUEUE=* bundle exec rake resque:work
 scheduler: bundle exec rake resque:scheduler

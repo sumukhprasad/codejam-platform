@@ -21,7 +21,7 @@ ActiveAdmin.register Testcase do
 				link_to f.input.filename, rails_blob_path(f.input, disposition: 'attachment') if f.input.attached?
 			end
 			row :output do |f|
-				link_to f.input.filename, rails_blob_path(f.input, disposition: 'attachment') if f.input.attached?
+				link_to f.output.filename, rails_blob_path(f.output, disposition: 'attachment') if f.output.attached?
 			end
 		end
 	end
