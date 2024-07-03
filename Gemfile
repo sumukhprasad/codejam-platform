@@ -82,6 +82,9 @@ gem "foreman"
 # Pagination
 gem "pagy"
 
+# MD
+gem "commonmarker"
+
 # ----
 
 group :development, :test do

@@ -115,6 +115,9 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
+    commonmarker (1.1.4-aarch64-linux)
+    commonmarker (1.1.4-arm64-darwin)
+    commonmarker (1.1.4-x86_64-linux)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -145,6 +148,7 @@ GEM
     fugit (1.11.0)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
+    github-markup (5.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     has_scope (0.8.2)
@@ -432,10 +436,12 @@ DEPENDENCIES
   activeadmin
   bootsnap
   capybara
+  commonmarker
   debug
   devise
   dotenv
   foreman
+  github-markup
   hiredis
   importmap-rails
   jbuilder

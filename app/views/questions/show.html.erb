@@ -8,7 +8,7 @@
 
 <div class="question-content">
 	
-	<%= render :partial => "questions/question_content", locals: {content: @question.content.download.gsub("\n",'\n')} %>
+	<%= render :partial => "questions/question_content", locals: {content: @question.content.download} %>
 
 
 	<%= image_tag @question.banner_image %>
