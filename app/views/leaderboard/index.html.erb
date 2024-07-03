@@ -32,7 +32,7 @@
 	<tbody>
 		<% if !@scores.blank? %>
 			<% @scores.sort_by { |s| s[:rank] }.each do | s | %>
-				<tr>
+				<tr style=<%= (s[:student] == current_student) ? "color:white;background-color:green;" : '' %>>
 					<td>
 						<% if s[:rank] == 1 %>
 							<%= image_tag "scoring/medals/gold.png", height: 16, style: "margin-bottom: -4px;" %>
