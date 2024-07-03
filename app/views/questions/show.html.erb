@@ -6,24 +6,64 @@
 	</i>
 </div>
 
-<div class="question-content">
+<div class="questions-body">
+	<div class="question-content">
 	
-	<%= render :partial => "questions/question_content", locals: {content: @question.content.download} %>
+		<%= render :partial => "questions/question_content", locals: {content: @question.content.download} %>
 
 
-	<%= image_tag @question.banner_image %>
+		<%= image_tag @question.banner_image %>
 	
 	
-	<hr>
-
-	<% if @submissions_allowed %>
-		<p>To begin, <%= link_to "get your input", question_input_path(@question.slug), target: "_blank" %>.</p>
-		<%= form_with url: question_submissions_path(:question => @question, :question_slug => @question.slug), method: :post do |f| %>
-			<p>Answer:</p> <%= f.text_area :result, placeholder: true, required: true %> <p><%= f.submit "Submit" %></p>
+		<hr>
+		<% if @config.end_time > DateTime.now %>
+			<% if @submissions_allowed %>
+				<p>To begin, <%= link_to "get your input", question_input_path(@question.slug), target: "_blank" %>.</p>
+				<%= form_with url: question_submissions_path(:question => @question, :question_slug => @question.slug), method: :post do |f| %>
+					<p>Answer:</p> <%= f.text_area :result, placeholder: true, required: true %> <p><%= f.submit "Submit" %></p>
+				<% end %>
+			<% else %>
+				You've already submitted a correct answer.
+			<% end %>
+		<% else %>
+			CodeJam has ended, you can no longer submit any answers.
 		<% end %>
-	<% else %>
-		You've already submitted a correct answer.
-	<% end %>
+		
 
-	<%= link_to "See past submissions", question_submissions_path(@question.slug) %>
+		<%= link_to "See past submissions", question_submissions_path(@question.slug) %>
+	</div>
+	
+	
+	<% if @config.end_time > DateTime.now %>
+		<div class="info-panel">
+			<div class="countdown-preceding-text">
+				CodeJam ends in
+			</div>
+			<div class="countdown" id="countdown">--:--:--</div>
+			<script>
+				var countDownDate = new Date("<%= @config.end_time.utc.iso8601 %>").getTime();
+				var countDownInterval = setInterval(function() {
+					var now = new Date().getTime();
+					var distance = countDownDate - now;
+					var hours = Math.floor(distance / (1000 * 60 * 60));
+					var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+					document.getElementById("countdown").innerHTML = String(hours).padStart(2, '0') + ":"
+					+ String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
+
+					if (distance <= 0) {
+						document.getElementById("questions-table").remove()
+						clearInterval(countDownInterval);
+						window.location.reload()
+					}
+				}, 1000);
+		
+				function padToTwo(number) {
+					if (number<=99) { number = ("0"+number).slice(-2); }
+					return number;
+				}
+			</script>
+		</div>
+	<% end %>
 </div>
