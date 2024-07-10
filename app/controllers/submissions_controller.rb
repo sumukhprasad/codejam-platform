@@ -17,7 +17,7 @@ class SubmissionsController < ApplicationController
 			@submission.save!
 			redirect_to question_submissions_path(@question.slug)
 		else
-			flash[:error] = "You make any new submissions once CodeJam has ended."
+			flash[:error] = "You cannot make any new submissions once CodeJam has ended."
 			redirect_to question_submissions_path(@question.slug)
 		end
 	end

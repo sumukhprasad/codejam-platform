@@ -3,6 +3,10 @@ class QuestionsController < ApplicationController
 	
 	def show
 		@config = ContestConfiguration.where(active: true).first
+		if @config == nil || @config.start_time > DateTime.now
+			flash[:error] = "You cannot access questions now."
+			redirect_to root_path
+		end
 		@question = Question.find_by(:slug => params[:slug])
 		@submissions_allowed = @question.submissions.where(:student_id => current_student.id, :is_correct => true).empty?
 	end

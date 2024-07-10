@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 	end
 	
 	get '/leaderboard', to: 'leaderboard#index', as: :leaderboard
+	get '/countdown', to: 'countdown#index', as: :countdown
 	
 	devise_for :admin_users, ActiveAdmin::Devise.config
 	ActiveAdmin.routes(self)

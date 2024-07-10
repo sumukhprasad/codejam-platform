@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>codejam</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+
+		<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+		<%= javascript_importmap_tags %>
+		<meta name="turbo-prefetch" content="false">
+	</head>
+
+	<body class="countdown-page">
+		<% if @config != nil %>
+			<% if @config.start_time < DateTime.now && @config.end_time > DateTime.now %>
+				<main>
+					CodeJam ends in
+					<h2 id="countdown"></h2>
+				</main>
+				<script>
+					var countDownDate = new Date("<%= @config.end_time.utc.iso8601 %>").getTime();
+					var countDownInterval = setInterval(function() {
+						var now = new Date().getTime();
+						var distance = countDownDate - now;
+						var hours = Math.floor(distance / (1000 * 60 * 60));
+						var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+						var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                  	
+						document.getElementById("countdown").innerHTML = String(hours).padStart(2, '0') + ":"
+						+ String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
+                  	
+						if (distance <= 0) {
+							clearInterval(countDownInterval);
+							window.location.reload()
+						}
+					}, 1000);
+				
+					function padToTwo(number) {
+						if (number<=99) { number = ("0"+number).slice(-2); }
+						document.getElementById("countdown").remove()
+						return number;
+					}
+				</script>
+			<% elsif @config.start_time > DateTime.now %>
+				<main>
+					CodeJam starts in
+					<h2 id="countdown"></h2>
+				</main>
+				<script>
+					var countDownDate = new Date("<%= @config.start_time.utc.iso8601 %>").getTime();
+					var countDownInterval = setInterval(function() {
+						var now = new Date().getTime();
+						var distance = countDownDate - now;
+						var hours = Math.floor(distance / (1000 * 60 * 60));
+						var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+						var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+						document.getElementById("countdown").innerHTML = String(hours).padStart(2, '0') + ":"
+						+ String(minutes).padStart(2, '0') + ":" + String(seconds).padStart(2, '0');
+
+						if (distance <= 0) {
+							clearInterval(countDownInterval);
+							document.getElementById("countdown").remove()
+							window.location.reload()
+						}
+					}, 1000);
+				
+					function padToTwo(number) {
+						if (number<=99) { number = ("0"+number).slice(-2); }
+						return number;
+					}
+				</script>
+			<% else %>
+				<main>
+					<strong><%= @config.after_end_notice %></strong>
+				</main>
+			<% end %>
+		<% else %>
+			CodeJam's timings has not been configured yet. Please wait.
+		<% end %>
+		
+	</body>
+</html>
