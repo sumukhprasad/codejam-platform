@@ -24,6 +24,7 @@
 		<tr>
 			<th scope="col">Rank</th>
 			<th scope="col">Name</th>
+			<th scope="col">Institution</th>
 			<th scope="col">Score</th>
 			<th scope="col">Stars</th>
 			<th scope="col">Total Score</th>
@@ -44,7 +45,8 @@
 						
 						<%= s[:rank] %>
 					</td>
-					<td><strong><%= s[:student].first_name %></strong></td>
+					<td><strong><%= computed_name(s[:student]) %></strong></td>
+					<td><%= s[:student].institution.name %></td>
 					<td><%= s[:raw_score] %></td>
 					<td>
 						<% s[:gold_stars].times do %>
