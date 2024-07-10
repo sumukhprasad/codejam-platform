@@ -1,16 +1,28 @@
-You are not logged in.
-<br>
---- DEVELOPMENT ONLY ---
-<br>
-<% if Rails.env.development? %>
-	<div class="category-separator">Institutions</div>
+<div class="home-centered">
 	
-	<%= link_to "Register for CodeJam", new_institution_registration_path %>
-	<%= link_to "Log In", new_institution_session_path %>
-	<br>
-	---
-	<br>
-	<div class="category-separator">Students</div>
-	<%= link_to "Register for CodeJam", new_student_registration_path %>
-	<%= link_to "Log In", new_student_session_path %>
-<% end %>
+	<%= image_tag "logos/no-padding.png", height: 128 %>
+
+	<div class="separator"></div>
+	
+	<div class="log-in-block">
+		<div>
+			<div class="category">Institutions</div>
+			<%= link_to "Register", new_institution_registration_path %>
+			or
+			<%= link_to "Log In", new_institution_session_path %>	
+		</div>
+		<div>
+			<div class="category">Students</div>
+			<%= link_to "Register", new_student_registration_path %>
+			or
+			<%= link_to "Log In", new_student_session_path %>	
+		</div>
+	</div>
+	
+	<% if Rails.env.development? %>
+		<div class="badge">
+			!!! <strong>CODEJAM IS RUNNING IN DEVELOPMENT</strong> !!!
+		</div>
+	<% end %>
+	
+</div>
