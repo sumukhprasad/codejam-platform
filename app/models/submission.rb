@@ -28,7 +28,7 @@ class Submission < ApplicationRecord
 	
 	def assign_stars
 		correct_submissions_count = question.submissions.where(is_correct: true).count
-		if is_correct
+		if is_correct && question.score != 0
 			if correct_submissions_count == 0
 				self.gold_star = true
 			elsif correct_submissions_count.between?(1, 5)
