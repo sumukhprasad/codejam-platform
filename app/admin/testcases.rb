@@ -4,18 +4,17 @@ ActiveAdmin.register Testcase do
 	
 	form do |f|
 		f.inputs do
-			f.input :title
+			f.input :question_id, :as => :select, :collection => Question.all.map { |u| ["#{u.title.to_s}", u.id] }
+			
+			f.input :testcase_number
 			f.input :input, as: :file
 			f.input :output, as: :file
-			f.input :testcase_number
-			f.input :question_id, :as => :select, :collection => Question.all.map { |u| ["#{u.title.to_s}", u.id] }
 		end
 		f.actions
 	end
 	
 	show do
 		attributes_table do
-			row :title
 			row :testcase_number
 			row :input do |f|
 				link_to f.input.filename, rails_blob_path(f.input, disposition: 'attachment') if f.input.attached?

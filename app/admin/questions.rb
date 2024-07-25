@@ -2,7 +2,6 @@ ActiveAdmin.register Question do
 	permit_params :title, :content, :banner_image, :score, :number, :slug
 	remove_filter :banner_image_attachment, :banner_image_blob, :content_attachment, :content_blob
 	
-	
 	form do |f|
 		f.inputs do
 			f.input :number
@@ -31,7 +30,7 @@ ActiveAdmin.register Question do
 					end
 					row :testcases do |f|
 						for testcase in f.testcases do
-							testcase.title
+							testcase.testcase_number
 						end
 					end
 				end
