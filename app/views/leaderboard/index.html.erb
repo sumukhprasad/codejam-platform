@@ -19,6 +19,9 @@
 
 <p><i>NOTE: This leaderboard might be inaccurate due to delays in processing scores. If your score is not immediately reflected, please allow a wait of at least 5 minutes before contacting your CodeJam liaison.</i></p>
 
+
+<% if !@scores.blank? %>
+
 <table class="open-table highlight-on-hover">
 	<thead>
 		<tr>
@@ -31,7 +34,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% if !@scores.blank? %>
 			<% @scores.sort_by { |s| s[:rank] }.each do | s | %>
 				<tr style=<%= (s[:student] == current_student) ? "color:white;background-color:green;" : '' %>>
 					<td>
@@ -66,11 +68,10 @@
 					<td><%= s[:total_score] %></td>
 				</tr>
 			<% end %>
-		<% else %>
-			No scores.
-		<% end %>
-		
 	</tbody>
 </table>
-
 <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+
+<% else %>
+	No scores.
+<% end %>
