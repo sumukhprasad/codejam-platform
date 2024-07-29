@@ -4,7 +4,8 @@ leaderboard_generation:
     - :first_in: '0s'
   queue: leaderboard_generation_queue
   class: LeaderboardGenerator
-  
+
+server_time_sync:
   every: 
     - "10s"
     - :first_in: '0s'
