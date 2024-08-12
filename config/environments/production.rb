@@ -88,13 +88,14 @@ Rails.application.configure do
 	config.action_mailer.delivery_method = :smtp
 	config.action_mailer.raise_delivery_errors = false
 	config.action_mailer.default :charset => "utf-8"
-
+     config.action_mailer.perform_deliveries = true
+     config.action_mailer.raise_delivery_errors = true
 	# SMTP settings 
 	ActionMailer::Base.smtp_settings = {
 		:port           => 587,
 		:address        => ENV['MAIL_addr'],
 		:domain         => ENV['MAIL_domain'],
-		:user_name      => ENV['MAIL_username'],
+		:user_name      => ENV['MAIL_user'],
 		:password       => ENV['MAIL_password'],
 		:authentication => :plain,
 	}

@@ -6,7 +6,7 @@ class Institution < ApplicationRecord
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 	
 	validates :name, presence: true
-	validates :website, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp }
+	validates :website, presence: true
 	validates :phone_country_code, presence: true, numericality: { only_integer: true }
 	validates :phone_number, presence: true, numericality: { only_integer: true }
 	validates :address_line_one, presence: true
