@@ -22,7 +22,7 @@ class Student < ApplicationRecord
 	private
 	
 	def generate_testcase_number
-		self.testcase_number = rand(1..3)
+		self.testcase_number = rand(1..20)
 	end
 
 	def date_of_birth_minimum_age

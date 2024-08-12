@@ -19,7 +19,7 @@ class Submission < ApplicationRecord
 	def verify_if_correct
 		expected_output = question.testcases.find_by(:testcase_number => student.testcase_number).output.download
 		
-		if result == expected_output
+		if result.strip == expected_output.strip
 			self.is_correct = true
 		else
 			self.is_correct = false
