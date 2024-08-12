@@ -1,8 +1,8 @@
 class Question < ApplicationRecord
 	include RansackSearchable
 	
-	has_many :testcases
-	has_many :submissions
+	has_many :testcases, dependent: :destroy
+	has_many :submissions, dependent: :destroy
 	
 	validates :score, presence: true
 	validates :number, presence: true

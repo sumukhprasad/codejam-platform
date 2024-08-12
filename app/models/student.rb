@@ -6,7 +6,7 @@ class Student < ApplicationRecord
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 				
 	belongs_to :institution
-	has_many :submissions
+	has_many :submissions, dependent: :destroy
 	
 	validates :first_name, :last_name, presence: true
 	# validates :preferred_first_name

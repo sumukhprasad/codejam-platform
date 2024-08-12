@@ -26,7 +26,7 @@ class Institution < ApplicationRecord
 		self.email = email.downcase
 	end
 	
-	has_many :students
+	has_many :students, dependent: :destroy
 	
 	private 
 	
