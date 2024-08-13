@@ -65,7 +65,7 @@
 		+
 		<%= f.number_field :phone_country_code, required: true, placeholder: "XX", style: "width: 32px;" %>
 		-
-		<%= f.number_field :phone_number, required: true, placeholder: "----------", style: "width: 200px;" %>
+		<%= f.number_field :phone_number, :max => 9999999999, required: true, placeholder: "----------", style: "width: 200px;" %>
 	</div>
 	
 	<div class="field">
