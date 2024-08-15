@@ -37,12 +37,14 @@
 			<% @scores.sort_by { |s| s[:rank] }.each do | s | %>
 				<tr style=<%= (s[:student] == current_student) ? "color:white;background-color:green;" : '' %>>
 					<td>
-						<% if s[:rank] == 1 %>
-							<%= image_tag "scoring/medals/gold.png", height: 16, style: "margin-bottom: -4px;" %>
-						<% elsif s[:rank] == 2 %>
-							<%= image_tag "scoring/medals/silver.png", height: 16, style: "margin-bottom: -4px;" %>
-						<% elsif s[:rank] == 3 %>
-							<%= image_tag "scoring/medals/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
+						<% if s[:total_score] != 0 %>
+							<% if s[:rank] == 1 %>
+								<%= image_tag "scoring/medals/gold.png", height: 16, style: "margin-bottom: -4px;" %>
+							<% elsif s[:rank] == 2 %>
+								<%= image_tag "scoring/medals/silver.png", height: 16, style: "margin-bottom: -4px;" %>
+							<% elsif s[:rank] == 3 %>
+								<%= image_tag "scoring/medals/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
+							<% end %>
 						<% end %>
 						
 						<%= s[:rank] %>
