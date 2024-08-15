@@ -20,60 +20,65 @@
 <p><i>NOTE: This leaderboard might be inaccurate due to delays in processing scores. If your score is not immediately reflected, please allow a wait of at least 5 minutes before contacting your CodeJam liaison.</i></p>
 
 
-<% if !@scores.blank? %>
 
-<table class="open-table highlight-on-hover">
-	<thead>
-		<tr>
-			<th scope="col">Rank</th>
-			<th scope="col">Name</th>
-			<th scope="col">Institution</th>
-			<th scope="col">Score</th>
-			<th scope="col">Stars</th>
-			<th scope="col">Total Score</th>
-		</tr>
-	</thead>
-	<tbody>
-			<% @scores.sort_by { |s| s[:rank] }.each do | s | %>
-				<tr style=<%= (s[:student] == current_student) ? "color:white;background-color:green;" : '' %>>
-					<td>
-						<% if s[:total_score] != 0 %>
-							<% if s[:rank] == 1 %>
-								<%= image_tag "scoring/medals/gold.png", height: 16, style: "margin-bottom: -4px;" %>
-							<% elsif s[:rank] == 2 %>
-								<%= image_tag "scoring/medals/silver.png", height: 16, style: "margin-bottom: -4px;" %>
-							<% elsif s[:rank] == 3 %>
-								<%= image_tag "scoring/medals/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
-							<% end %>
-						<% end %>
-						
-						<%= s[:rank] %>
-					</td>
-					<td><strong><%= computed_name(s[:student]) %></strong></td>
-					<td><%= s[:student].institution.name %></td>
-					<td><%= s[:raw_score] %></td>
-					<td>
-						<% s[:gold_stars].times do %>
-							<%= image_tag "scoring/stars/gold.png", height: 16, style: "margin-bottom: -4px;" %>
-						<% end %>	
-						
-
-						<% s[:silver_stars].times do %>
-							<%= image_tag "scoring/stars/silver.png", height: 16, style: "margin-bottom: -4px;" %>
-						<% end %>
-						
-
-						<% s[:bronze_stars].times do %>
-							<%= image_tag "scoring/stars/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
-						<% end %>
-					</td>
-					<td><%= s[:total_score] %></td>
-				</tr>
-			<% end %>
-	</tbody>
-</table>
-<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-
+<% if @config.start_time > DateTime.now %>
+	CodeJam's leaderboard will be accessible once the contest begins.
 <% else %>
-	No scores.
+	<% if !@scores.blank? %>
+
+	<table class="open-table highlight-on-hover">
+		<thead>
+			<tr>
+				<th scope="col">Rank</th>
+				<th scope="col">Name</th>
+				<th scope="col">Institution</th>
+				<th scope="col">Score</th>
+				<th scope="col">Stars</th>
+				<th scope="col">Total Score</th>
+			</tr>
+		</thead>
+		<tbody>
+				<% @scores.sort_by { |s| s[:rank] }.each do | s | %>
+					<tr style=<%= (s[:student] == current_student) ? "color:white;background-color:green;" : '' %>>
+						<td>
+							<% if s[:total_score] != 0 %>
+								<% if s[:rank] == 1 %>
+									<%= image_tag "scoring/medals/gold.png", height: 16, style: "margin-bottom: -4px;" %>
+								<% elsif s[:rank] == 2 %>
+									<%= image_tag "scoring/medals/silver.png", height: 16, style: "margin-bottom: -4px;" %>
+								<% elsif s[:rank] == 3 %>
+									<%= image_tag "scoring/medals/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
+								<% end %>
+							<% end %>
+						
+							<%= s[:rank] %>
+						</td>
+						<td><strong><%= computed_name(s[:student]) %></strong></td>
+						<td><%= s[:student].institution.name %></td>
+						<td><%= s[:raw_score] %></td>
+						<td>
+							<% s[:gold_stars].times do %>
+								<%= image_tag "scoring/stars/gold.png", height: 16, style: "margin-bottom: -4px;" %>
+							<% end %>	
+						
+
+							<% s[:silver_stars].times do %>
+								<%= image_tag "scoring/stars/silver.png", height: 16, style: "margin-bottom: -4px;" %>
+							<% end %>
+						
+
+							<% s[:bronze_stars].times do %>
+								<%= image_tag "scoring/stars/bronze.png", height: 16, style: "margin-bottom: -4px;" %>
+							<% end %>
+						</td>
+						<td><%= s[:total_score] %></td>
+					</tr>
+				<% end %>
+		</tbody>
+	</table>
+	<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+
+	<% else %>
+		No scores.
+	<% end %>
 <% end %>
