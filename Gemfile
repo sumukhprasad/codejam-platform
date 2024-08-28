@@ -66,6 +66,7 @@ gem "devise"
 
 # Admin
 gem "activeadmin"
+gem 'country_select', '~> 8.0'
 
 # resque
 gem "resque"

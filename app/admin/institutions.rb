@@ -15,4 +15,6 @@ ActiveAdmin.register Institution do
   #   permitted
   # end
   
+  permit_params :email, :name, :website, :phone_country_code, :phone_number, :address_line_one, :address_line_two, :address_line_three, :city, :state, :country, :zip_code, :secondary_contact_email
+  
 end

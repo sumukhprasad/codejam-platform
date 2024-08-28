@@ -120,6 +120,10 @@ GEM
     commonmarker (1.1.4-x86_64-linux)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    countries (5.7.2)
+      unaccent (~> 0.3)
+    country_select (8.0.3)
+      countries (~> 5.0)
     crass (1.0.6)
     csv (3.3.0)
     date (3.3.4)
@@ -148,7 +152,6 @@ GEM
     fugit (1.11.0)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
-    github-markup (5.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     has_scope (0.8.2)
@@ -410,6 +413,7 @@ GEM
       railties (>= 5.0, < 8.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unaccent (0.4.0)
     unicode-display_width (2.5.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -437,11 +441,11 @@ DEPENDENCIES
   bootsnap
   capybara
   commonmarker
+  country_select (~> 8.0)
   debug
   devise
   dotenv
   foreman
-  github-markup
   hiredis
   importmap-rails
   jbuilder

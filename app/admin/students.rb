@@ -15,4 +15,6 @@ ActiveAdmin.register Student do
   #   permitted
   # end
   
+  permit_params :email, :first_name, :preferred_first_name, :middle_name, :last_name, :gender, :date_of_birth, :institution_id
+  
 end
