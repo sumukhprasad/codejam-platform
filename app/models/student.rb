@@ -17,12 +17,19 @@ class Student < ApplicationRecord
 	validate :date_of_birth_minimum_age
 	before_validation(on: :create) do
 		generate_testcase_number
+		assign_blank_last_name
 	end
 	
 	private
 	
 	def generate_testcase_number
 		self.testcase_number = rand(1..20)
+	end
+	
+	def assign_blank_last_name
+		if !last_name.present?
+			self.last_name = " "
+		end
 	end
 
 	def date_of_birth_minimum_age

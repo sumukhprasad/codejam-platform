@@ -21,7 +21,7 @@
 		<%= f.label :middle_name %><br />
 		<%= f.text_field :middle_name %><br />
 		<%= f.label :last_name %><br />
-		<%= f.text_field :last_name, required: true %>
+		<%= f.text_field :last_name %>
 	</div>
 	
 	<div class="field">
@@ -117,8 +117,7 @@
 
 <p>Cancelling your registration will have the following consequences:</p>
 <ul>
-	<li>All data associated with the institution will be deleted from CodeJam's database and will not be recoverable</li>
-	<li>Registered students from your institution will not be able to participate unless they register with an another institution</li>
+	<li>All data associated with your account will be deleted from CodeJam's database and will not be recoverable</li>
 </ul>
 
 <%= button_to "I understand the consequences, cancel my registration", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
