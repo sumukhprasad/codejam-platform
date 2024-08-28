@@ -8,7 +8,7 @@ class Student < ApplicationRecord
 	belongs_to :institution
 	has_many :submissions, dependent: :destroy
 	
-	validates :first_name, :last_name, presence: true
+	validates :first_name, presence: true
 	# validates :preferred_first_name
 	# validates :middle_name
 	validates :gender, presence: true
