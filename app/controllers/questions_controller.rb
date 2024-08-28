@@ -6,8 +6,15 @@ class QuestionsController < ApplicationController
 		if @config == nil || @config.start_time > DateTime.now
 			flash[:error] = "You cannot access questions now."
 			redirect_to root_path
+			return
 		end
+		
 		@question = Question.find_by(:slug => params[:slug])
+		if @question == nil || @config.start_time > DateTime.now
+			flash[:error] = "That question does not exist."
+			redirect_to root_path
+			return
+		end
 		@submissions_allowed = @question.submissions.where(:student_id => current_student.id, :is_correct => true).empty?
 	end
 	
